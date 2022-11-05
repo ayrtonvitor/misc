@@ -27,7 +27,7 @@ class NewVisitor(LiveServerTestCase):
                     raise e
                 time.sleep(0.5)
 
-    def test_can_start_a_list_and_retrieve_it_later(self):
+    def test_can_start_a_list_for_one_user(self):
         self.browser.get(self.live_server_url)
         self.assertIn('To-Do', self.browser.title)
         header_text = self.browser.find_element(By.TAG_NAME, 'h1').text
@@ -76,6 +76,6 @@ class NewVisitor(LiveServerTestCase):
         self.assertNotEqual(francis_list_url, edith_list_url)
 
 
-        page_text = self.browser.find_element(By.TAG_NAME).text
+        page_text = self.browser.find_element(By.TAG_NAME, 'body').text
         self.assertNotIn('Buy peacock feathers', page_text)
         self.assertIn('Buy milk', page_text)
